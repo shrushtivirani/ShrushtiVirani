@@ -99,6 +99,8 @@ const resumePanels = [
   }
 ];
 
+const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export default function Home() {
   const [active, setActive] = useState(shelfItems[0]);
   const [openPanel, setOpenPanel] = useState(0);
@@ -151,7 +153,7 @@ export default function Home() {
 
         <div className="hero-still-life" aria-label="Curiosity desk">
           <Image
-            src="/images/stickers/flower-bottle.png"
+            src={assetPath("/images/stickers/flower-bottle.png")}
             alt="Watercolor green bottle with flowers"
             width={280}
             height={520}
@@ -174,7 +176,7 @@ export default function Home() {
               onMouseEnter={() => setActive(item)}
               onFocus={() => setActive(item)}
             >
-              <Image src={item.image} alt="" fill sizes="(max-width: 768px) 45vw, 320px" />
+              <Image src={assetPath(item.image)} alt="" fill sizes="(max-width: 768px) 45vw, 320px" />
               {item.id === "secret" ? (
                 <div className="netflix-shelf-label" aria-hidden={!horrorMode}>
                   <small>Now Playing</small>
